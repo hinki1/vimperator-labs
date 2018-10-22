@@ -75,8 +75,8 @@ const Liberator = Module("liberator", {
 
         let platform = Liberator.getPlatformFeature()
         config.features.add(platform);
-        if (/^Win(32|64)$/.test(platform))
-            config.features.add('Windows');
+//        if (/^Win(32|64)$/.test(platform))
+//            config.features.add('Windows');
 
         if (AddonManager) {
             let self = this;

@@ -75,8 +75,8 @@ const Liberator = Module("liberator", {
 
         let platform = Liberator.getPlatformFeature()
         config.features.add(platform);
-        if (/^Win(32|64)$/.test(platform))
-            config.features.add('Windows');
+//        if (/^Win(32|64)$/.test(platform))
+//            config.features.add('Windows');
 
         if (AddonManager) {
             let self = this;
@@ -137,7 +137,7 @@ const Liberator = Module("liberator", {
     forceNewPrivateWindow: false,
 
     /** @property {string} The Liberator version string. */
-    version: "3.16.0 (created: 2018/10/22 11:24:39)", // these VERSION and DATE tokens are replaced by the Makefile
+    version: "3.16.0 (created: 2018/10/22 16:02:27)", // these VERSION and DATE tokens are replaced by the Makefile
 
     /**
      * @property {Object} The map of command-line options. These are

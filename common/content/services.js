@@ -82,7 +82,12 @@ const Services = Module("services", {
 
     _create: function (classes, ifaces, meth) {
         try {
-            let res = Cc[classes][meth || "getService"]();
+		dump( "try _create\n" );
+		dump( meth );
+            let res = meth ? Cc[classes][meth]() : Cc[classes].getService();
+		dump( "\ntried getService:\n");
+		dump( res );
+		dump( "\n\n" );
             if (!ifaces)
                 return res.wrappedJSObject;
             ifaces = Array.concat(ifaces);
@@ -92,6 +97,7 @@ const Services = Module("services", {
         catch (e) {
             // liberator.log() is not defined at this time, so just dump any error
             dump("Service creation failed for '" + classes + "': " + e + "\n");
+		dump( "iface " + iface + "tried.\n" );
             return null;
         }
     },
@@ -107,7 +113,11 @@ const Services = Module("services", {
      *     the service.
      */
     add: function (name, class_, ifaces, meth) {
+	dump( "calling add-service-to-cache\n" );
         this.services[name] = {"class_": class_, "iface": ifaces, "meth": meth};
+	dump( "services so far:\n");
+	dump( name );
+	dump(this.services[name]);
     },
 
     /**
