@@ -161,8 +161,8 @@ xpi:
 	cd $(XPI_PATH) && zip -q -9r ../$(XPI_NAME).xpi *
 
 	# Clean out build files
-	rm -rf $(XPI_PATH)
-	rm -rf ../downloads/common
+#	rm -rf $(XPI_PATH)
+#	rm -rf ../downloads/common
 
 	@echo "SUCCESS: $(XPI_FILE)"
 
