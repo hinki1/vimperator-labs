@@ -844,7 +844,6 @@ const CommandLine = Module("commandline", {
      */
     onMultilineOutputEvent: function onMultilineOutputEvent(event) {
         let win = this._multilineOutputWidget.contentWindow;
-        liberator.echomsg("in functio onMultilineOutputEvent");
         let key = events.toString(event);
 
         if (event.type == "click" && event.target instanceof HTMLAnchorElement) {
@@ -1863,10 +1862,7 @@ const ItemList = Class("ItemList", {
             }
         }, this);
 
-	return false;
-
-	if ( this._divNodes && this._divNodes.noCompletions )
-            this._divNodes.noCompletions.style.display = haveCompletions ? "none" : "block";
+        this._divNodes.noCompletions.style.display = haveCompletions ? "none" : "block";
 
         this._completionElements = util.evaluateXPath("//xhtml:div[@liberator:highlight='CompItem']", this._doc);
 

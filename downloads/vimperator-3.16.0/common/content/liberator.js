@@ -137,7 +137,7 @@ const Liberator = Module("liberator", {
     forceNewPrivateWindow: false,
 
     /** @property {string} The Liberator version string. */
-    version: "3.16.0 (created: 2018/10/22 11:12:20)", // these VERSION and DATE tokens are replaced by the Makefile
+    version: "3.16.0 (created: 2018/10/22 11:24:39)", // these VERSION and DATE tokens are replaced by the Makefile
 
     /**
      * @property {Object} The map of command-line options. These are
