@@ -9,6 +9,9 @@
 */locale/*/*.html
 */chrome
 */contrib/vim/*.vba
+/downloads/-/
+/downloads/-update.rdf
+/downloads/vimperator-update.rdf
 
 ## Editor backup and swap files
 *~
