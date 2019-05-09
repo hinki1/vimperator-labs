@@ -1001,8 +1001,8 @@ const CommandLine = Module("commandline", {
                     showHelp = true;
                 break;
             // unmapped key -> show Help
-            default:
-                showHelp = true;
+//            default:
+//                showHelp = true;
         }
 
         if (showHelp) {
