@@ -154,6 +154,7 @@ const CommandLine = Module("commandline", {
 
         // the widget used for multiline output
         this._multilineOutputWidget = document.getElementById("liberator-multiline-output");
+	dump( this._multilineOutputWidget );
         this._outputContainer = this._multilineOutputWidget.parentNode;
 
         this._multilineOutputWidget.contentDocument.body.id = "liberator-multiline-output-content";
@@ -887,6 +888,7 @@ const CommandLine = Module("commandline", {
             return;
         }
 
+	dump( win.scrollMaxY );
         let isScrollable = win.scrollMaxY !== 0;
         let showHelp = false;
         switch (key) {
@@ -979,10 +981,17 @@ const CommandLine = Module("commandline", {
             // bottom of page
             case "G":
             case "<End>":
+		dump( "G pressed on commandline\n" );
                 if (isScrollable)
+		{
+			dump( "isScrollable\n" );
                     win.scrollTo(0, win.scrollMaxY);
+		}
                 else
+		{
+			dump( "is not scrollable\n" );
                     showHelp = true;
+		}
                 break;
             case "Y":
                 let sel = win.getSelection().toString();
