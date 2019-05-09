@@ -685,6 +685,7 @@ const Events = Module("events", {
     // access to the real focus target
     // Huh? --djk
     onFocusChange: function (event) {
+	dump("onFocusChange\n");
         // command line has it's own focus change handler
         if (liberator.mode == modes.COMMAND_LINE)
             return;
@@ -867,7 +868,9 @@ const Events = Module("events", {
     // the commandline has focus
     // TODO: ...help me...please...
     onKeyPress: function (event) {
+	dump( "onKeyPress '" + events.toString(event) + "'\n" );
         function killEvent() {
+		dump( "onKeyPress.killEvent '" + events.toString(event) + "'\n" );
             event.preventDefault();
             event.stopPropagation();
         }
@@ -881,6 +884,8 @@ const Events = Module("events", {
         let key = events.toString(event);
         if (!key)
              return;
+
+	dump("onKeyPress. key detected '" + events.toString(event) + "'\n");
 
         let url = typeof(buffer) != "undefined" ? buffer.URL : "";
 
@@ -919,6 +924,7 @@ const Events = Module("events", {
         }
 
         try {
+//             liberator.echomsg("try to dispatch key '" + events.toString(event) + "'");
             let stop = false;
             let win = document.commandDispatcher.focusedWindow;
 
@@ -1101,6 +1107,7 @@ const Events = Module("events", {
     },
 
     onKeyUpOrDown: function (event) {
+	dump("onKeyUpOrDown. key '" + events.toString(event) + "'\n");
         // Always let the event be handled by the webpage/Firefox for certain modes
         if (modes.isMenuShown)
             return;
@@ -1153,7 +1160,7 @@ const Events = Module("events", {
         if (!options.passthrough)
             event.stopPropagation();
 
-        // liberator.echo ("key: " + key + "\nkeycode: " + event.keyCode + "\nchar: " + event.charCode + "\ntype: " + event.type + "\nwhich: " + event.which);
+        liberator.echo ("key: " + key + "\nkeycode: " + event.keyCode + "\nchar: " + event.charCode + "\ntype: " + event.type + "\nwhich: " + event.which);
     },
 
     onPopupShown: function (event) {
