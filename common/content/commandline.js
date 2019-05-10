@@ -918,8 +918,8 @@ const CommandLine = Module("commandline", {
             case "<Return>":
                 if (isScrollable)
                     win.scrollByLines(1);
-                else
-                    showHelp = true;
+//                else
+//                    showHelp = true;
                 break;
 
             // up a line
@@ -928,24 +928,24 @@ const CommandLine = Module("commandline", {
             case "<BS>":
                 if (isScrollable)
                     win.scrollByLines(-1);
-                else
-                    showHelp = true;
+//                else
+//                    showHelp = true;
                 break;
 
             // half page down
             case "d":
                 if (isScrollable)
                     win.scrollBy(0, win.innerHeight / 2);
-                else
-                    showHelp = true;
+//                else
+//                    showHelp = true;
                 break;
 
             // half page up
             case "u":
                 if (isScrollable)
                     win.scrollBy(0, -(win.innerHeight / 2));
-                else
-                    showHelp = true;
+//                else
+//                    showHelp = true;
                 break;
 
             // page down
@@ -955,8 +955,8 @@ const CommandLine = Module("commandline", {
             case "<PageDown>":
                 if (isScrollable)
                     win.scrollByPages(1);
-                else
-                    showHelp = true;
+//                else
+//                    showHelp = true;
                 break;
 
             // page up
@@ -965,8 +965,8 @@ const CommandLine = Module("commandline", {
             case "<PageUp>":
                 if (isScrollable)
                     win.scrollByPages(-1);
-                else
-                    showHelp = true;
+//                else
+//                    showHelp = true;
                 break;
 
             // top of page
@@ -974,8 +974,8 @@ const CommandLine = Module("commandline", {
             case "<Home>":
                 if (isScrollable)
                     win.scrollTo(0, 0);
-                else
-                    showHelp = true;
+//                else
+//                    showHelp = true;
                 break;
 
             // bottom of page
@@ -990,15 +990,15 @@ const CommandLine = Module("commandline", {
                 else
 		{
 			dump( "is not scrollable\n" );
-                    showHelp = true;
+//                    showHelp = true;
 		}
                 break;
             case "Y":
                 let sel = win.getSelection().toString();
                 if (sel)
                     util.copyToClipboard(sel, false);
-                else
-                    showHelp = true;
+//                else
+//                    showHelp = true;
                 break;
             // unmapped key -> show Help
 //            default:
