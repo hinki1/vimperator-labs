@@ -882,11 +882,12 @@ const Events = Module("events", {
                 events._input.count = null;
         }
 
+	// filter non-key-presses
         let key = events.toString(event);
         if (!key)
              return;
 
-	dump("onKeyPress. key detected '" + events.toString(event) + "'\n");
+	dump("onKeyPress. key detected '" + events.toString(event) + " passAll: " + modes.passAllKeys + "'\n");
 
         let url = typeof(buffer) != "undefined" ? buffer.URL : "";
 
@@ -925,7 +926,7 @@ const Events = Module("events", {
         }
 
         try {
-//             liberator.echomsg("try to dispatch key '" + events.toString(event) + "'");
+		dump("try to dispatch key '" + events.toString(event) + "'");
             let stop = false;
             let win = document.commandDispatcher.focusedWindow;
 
