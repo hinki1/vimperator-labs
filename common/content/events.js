@@ -46,6 +46,7 @@ const Events = Module("events", {
         this._code_key = {};
         this._key_code = {};
 
+	// build table of key-codes
         for (let [k, v] in Iterator(KeyEvent))
             if (/^DOM_VK_(?![A-Z0-9]$)/.test(k)) {
                 k = k.substr(7).toLowerCase();
@@ -124,11 +125,11 @@ const Events = Module("events", {
         this.addSessionListener(window, "keyup", this.closure._wrappedOnKeyUpOrDown, true);
 
         this._activeMenubar = false;
-        this.addSessionListener(window, "popupshown", this.closure.onPopupShown, true);
-        this.addSessionListener(window, "popuphidden", this.closure.onPopupHidden, true);
-        this.addSessionListener(window, "DOMMenuBarActive", this.closure.onDOMMenuBarActive, true);
-        this.addSessionListener(window, "DOMMenuBarInactive", this.closure.onDOMMenuBarInactive, true);
-        this.addSessionListener(window, "resize", this.closure.onResize, true);
+//        this.addSessionListener(window, "popupshown", this.closure.onPopupShown, true);
+//        this.addSessionListener(window, "popuphidden", this.closure.onPopupHidden, true);
+//        this.addSessionListener(window, "DOMMenuBarActive", this.closure.onDOMMenuBarActive, true);
+//        this.addSessionListener(window, "DOMMenuBarInactive", this.closure.onDOMMenuBarInactive, true);
+//        this.addSessionListener(window, "resize", this.closure.onResize, true);
 
     },
 
