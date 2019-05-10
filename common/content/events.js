@@ -1119,7 +1119,7 @@ const Events = Module("events", {
             if (modes._passKeysExceptions == null || modes._passKeysExceptions.indexOf(key) < 0) {
                 return;
             } else {
-//                event.stopPropagation();
+                event.stopPropagation();
                 return;
             }
         }
@@ -1133,7 +1133,7 @@ const Events = Module("events", {
             }
 
             this.onEscape(); // We do our Escape handling here, as the on "onKeyPress" may not always work if websites override the keydown event
-//            event.stopPropagation();
+            event.stopPropagation();
             return;
         }
 
@@ -1147,19 +1147,19 @@ const Events = Module("events", {
         let candidateCommand = inputStr.substr(countStr.length);
         let map = mappings[event.noremap ? "getDefault" : "get"](liberator.mode, candidateCommand, url);
         if (map) {
-//            event.stopPropagation();
+            event.stopPropagation();
             return;
         }
 
         // Or we have a mapping starting with that key
         let candidates = mappings.getCandidates(liberator.mode, candidateCommand, url);
         if (candidates.length > 0) { // We want to handle that key ourselves
-//            event.stopPropagation();
+            event.stopPropagation();
             return;
         }
 
         if (!options.passthrough)
-//            event.stopPropagation();
+            event.stopPropagation();
 
         liberator.echo ("key: " + key + "\nkeycode: " + event.keyCode + "\nchar: " + event.charCode + "\ntype: " + event.type + "\nwhich: " + event.which);
     },

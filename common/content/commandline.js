@@ -768,7 +768,7 @@ const CommandLine = Module("commandline", {
             else if (/^<(Up|Down|S-Up|S-Down|PageUp|PageDown)>$/.test(key)) {
                 // prevent tab from moving to the next field
                 event.preventDefault();
-//                event.stopPropagation();
+                event.stopPropagation();
 
                 liberator.assert(this._history);
                 this._history.select(/Up/.test(key), !/(Page|S-)/.test(key));
@@ -777,7 +777,7 @@ const CommandLine = Module("commandline", {
             else if (/^<(Tab|S-Tab)>$/.test(key)) {
                 // prevent tab from moving to the next field
                 event.preventDefault();
-//                event.stopPropagation();
+                event.stopPropagation();
 
                 this._tabTimer.tell(event);
             }
