@@ -938,7 +938,10 @@ const Events = Module("events", {
                 stop = true;
             } else if (modes.passAllKeys) { // handle Escape-all-keys mode (Shift-Esc)
                 if (key == "<S-Esc>" || key == "<Insert>") // FIXME: Don't hardcode!
+		{
                     modes.passAllKeys = false;
+			event.stopPropagation();
+		}
 
                 // If we manage to get into command line mode while IGNOREKEYS, let the command line handle keys
                 if (liberator.mode == modes.COMMAND_LINE)
