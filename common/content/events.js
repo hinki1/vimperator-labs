@@ -926,7 +926,7 @@ const Events = Module("events", {
         }
 
         try {
-		dump("try to dispatch key '" + events.toString(event) + "'");
+		dump("try to dispatch key '" + events.toString(event) + "'\n");
             let stop = false;
             let win = document.commandDispatcher.focusedWindow;
 
