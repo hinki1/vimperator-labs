@@ -1862,7 +1862,8 @@ const ItemList = Class("ItemList", {
             }
         }, this);
 
-        this._divNodes.noCompletions.style.display = haveCompletions ? "none" : "block";
+        if ( this._divNodes && this_divNodes.noCompletions )
+            this._divNodes.noCompletions.style.display = haveCompletions ? "none" : "block";
 
         this._completionElements = util.evaluateXPath("//xhtml:div[@liberator:highlight='CompItem']", this._doc);
 
