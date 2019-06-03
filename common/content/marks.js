@@ -23,7 +23,7 @@ const Marks = Module("marks", {
      */
     get all() {
         // local marks
-        let location = window.location.href;
+        let location = window.content.location.href;
         let lmarks = Array.from(this._localMarkIter())
                           .filter(i => i[1].location == location);
         lmarks.sort();

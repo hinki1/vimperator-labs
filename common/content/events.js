@@ -46,7 +46,6 @@ const Events = Module("events", {
         this._code_key = {};
         this._key_code = {};
 
-	// build table of key-codes
         for (let [k, v] in Iterator(KeyEvent))
             if (/^DOM_VK_(?![A-Z0-9]$)/.test(k)) {
                 k = k.substr(7).toLowerCase();
@@ -125,11 +124,11 @@ const Events = Module("events", {
         this.addSessionListener(window, "keyup", this.closure._wrappedOnKeyUpOrDown, true);
 
         this._activeMenubar = false;
-//        this.addSessionListener(window, "popupshown", this.closure.onPopupShown, true);
-//        this.addSessionListener(window, "popuphidden", this.closure.onPopupHidden, true);
-//        this.addSessionListener(window, "DOMMenuBarActive", this.closure.onDOMMenuBarActive, true);
-//        this.addSessionListener(window, "DOMMenuBarInactive", this.closure.onDOMMenuBarInactive, true);
-//        this.addSessionListener(window, "resize", this.closure.onResize, true);
+        this.addSessionListener(window, "popupshown", this.closure.onPopupShown, true);
+        this.addSessionListener(window, "popuphidden", this.closure.onPopupHidden, true);
+        this.addSessionListener(window, "DOMMenuBarActive", this.closure.onDOMMenuBarActive, true);
+        this.addSessionListener(window, "DOMMenuBarInactive", this.closure.onDOMMenuBarInactive, true);
+        this.addSessionListener(window, "resize", this.closure.onResize, true);
 
     },
 
@@ -686,7 +685,6 @@ const Events = Module("events", {
     // access to the real focus target
     // Huh? --djk
     onFocusChange: function (event) {
-	dump("onFocusChange\n");
         // command line has it's own focus change handler
         if (liberator.mode == modes.COMMAND_LINE)
             return;
@@ -869,9 +867,7 @@ const Events = Module("events", {
     // the commandline has focus
     // TODO: ...help me...please...
     onKeyPress: function (event) {
-	dump( "onKeyPress '" + events.toString(event) + "'\n" );
         function killEvent() {
-		dump( "onKeyPress.killEvent '" + events.toString(event) + "'\n" );
             event.preventDefault();
             event.stopPropagation();
         }
@@ -882,12 +878,9 @@ const Events = Module("events", {
                 events._input.count = null;
         }
 
-	// filter non-key-presses
         let key = events.toString(event);
         if (!key)
              return;
-
-	dump("onKeyPress. key detected '" + events.toString(event) + " passAll: " + modes.passAllKeys + "'\n");
 
         let url = typeof(buffer) != "undefined" ? buffer.URL : "";
 
@@ -926,7 +919,6 @@ const Events = Module("events", {
         }
 
         try {
-		dump("try to dispatch key '" + events.toString(event) + "'\n");
             let stop = false;
             let win = document.commandDispatcher.focusedWindow;
 
@@ -938,10 +930,7 @@ const Events = Module("events", {
                 stop = true;
             } else if (modes.passAllKeys) { // handle Escape-all-keys mode (Shift-Esc)
                 if (key == "<S-Esc>" || key == "<Insert>") // FIXME: Don't hardcode!
-		{
                     modes.passAllKeys = false;
-			event.stopPropagation();
-		}
 
                 // If we manage to get into command line mode while IGNOREKEYS, let the command line handle keys
                 if (liberator.mode == modes.COMMAND_LINE)
@@ -1112,7 +1101,6 @@ const Events = Module("events", {
     },
 
     onKeyUpOrDown: function (event) {
-	dump("onKeyUpOrDown. key '" + events.toString(event) + "'\n");
         // Always let the event be handled by the webpage/Firefox for certain modes
         if (modes.isMenuShown)
             return;
@@ -1165,7 +1153,7 @@ const Events = Module("events", {
         if (!options.passthrough)
             event.stopPropagation();
 
-        liberator.echo ("key: " + key + "\nkeycode: " + event.keyCode + "\nchar: " + event.charCode + "\ntype: " + event.type + "\nwhich: " + event.which);
+        // liberator.echo ("key: " + key + "\nkeycode: " + event.keyCode + "\nchar: " + event.charCode + "\ntype: " + event.type + "\nwhich: " + event.which);
     },
 
     onPopupShown: function (event) {

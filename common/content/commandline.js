@@ -154,7 +154,6 @@ const CommandLine = Module("commandline", {
 
         // the widget used for multiline output
         this._multilineOutputWidget = document.getElementById("liberator-multiline-output");
-	dump( this._multilineOutputWidget );
         this._outputContainer = this._multilineOutputWidget.parentNode;
 
         this._multilineOutputWidget.contentDocument.body.id = "liberator-multiline-output-content";
@@ -888,7 +887,6 @@ const CommandLine = Module("commandline", {
             return;
         }
 
-	dump( win.scrollMaxY );
         let isScrollable = win.scrollMaxY !== 0;
         let showHelp = false;
         switch (key) {
@@ -918,8 +916,8 @@ const CommandLine = Module("commandline", {
             case "<Return>":
                 if (isScrollable)
                     win.scrollByLines(1);
-//                else
-//                    showHelp = true;
+                else
+                    showHelp = true;
                 break;
 
             // up a line
@@ -928,24 +926,24 @@ const CommandLine = Module("commandline", {
             case "<BS>":
                 if (isScrollable)
                     win.scrollByLines(-1);
-//                else
-//                    showHelp = true;
+                else
+                    showHelp = true;
                 break;
 
             // half page down
             case "d":
                 if (isScrollable)
                     win.scrollBy(0, win.innerHeight / 2);
-//                else
-//                    showHelp = true;
+                else
+                    showHelp = true;
                 break;
 
             // half page up
             case "u":
                 if (isScrollable)
                     win.scrollBy(0, -(win.innerHeight / 2));
-//                else
-//                    showHelp = true;
+                else
+                    showHelp = true;
                 break;
 
             // page down
@@ -955,8 +953,8 @@ const CommandLine = Module("commandline", {
             case "<PageDown>":
                 if (isScrollable)
                     win.scrollByPages(1);
-//                else
-//                    showHelp = true;
+                else
+                    showHelp = true;
                 break;
 
             // page up
@@ -965,8 +963,8 @@ const CommandLine = Module("commandline", {
             case "<PageUp>":
                 if (isScrollable)
                     win.scrollByPages(-1);
-//                else
-//                    showHelp = true;
+                else
+                    showHelp = true;
                 break;
 
             // top of page
@@ -974,35 +972,28 @@ const CommandLine = Module("commandline", {
             case "<Home>":
                 if (isScrollable)
                     win.scrollTo(0, 0);
-//                else
-//                    showHelp = true;
+                else
+                    showHelp = true;
                 break;
 
             // bottom of page
             case "G":
             case "<End>":
-		dump( "G pressed on commandline\n" );
                 if (isScrollable)
-		{
-			dump( "isScrollable\n" );
                     win.scrollTo(0, win.scrollMaxY);
-		}
                 else
-		{
-			dump( "is not scrollable\n" );
-//                    showHelp = true;
-		}
+                    showHelp = true;
                 break;
             case "Y":
                 let sel = win.getSelection().toString();
                 if (sel)
                     util.copyToClipboard(sel, false);
-//                else
-//                    showHelp = true;
+                else
+                    showHelp = true;
                 break;
             // unmapped key -> show Help
-//            default:
-//                showHelp = true;
+            default:
+                showHelp = true;
         }
 
         if (showHelp) {
@@ -1871,7 +1862,8 @@ const ItemList = Class("ItemList", {
             }
         }, this);
 
-        this._divNodes.noCompletions.style.display = haveCompletions ? "none" : "block";
+        if ( this._divNodes.noCompletions )
+		this._divNodes.noCompletions.style.display = haveCompletions ? "none" : "block";
 
         this._completionElements = util.evaluateXPath("//xhtml:div[@liberator:highlight='CompItem']", this._doc);
 
